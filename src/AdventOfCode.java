@@ -10,7 +10,8 @@ public class AdventOfCode {
 	private static Path cycles = Paths.get("E:/Docs de Germain/Documents/AdventOfCode/cycles.txt");
 	private static Path day1_2018 = Paths.get("E:/Docs de Germain/Documents/AdventOfCode/day1_2018.txt");
 	private static Path day2_2018 = Paths.get("E:/Docs de Germain/Documents/AdventOfCode/day2_2018.txt");
-	private static Path day3_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/fabric.txt");
+	private static Path day3_2018 = Paths.get("C:/Users/Germain/workspace/Sandbox/files/fabric.txt");
+	private static Path day3_test_2018 = Paths.get("C:/Users/Germain/workspace/Sandbox/files/fabricSmall.txt");
 
 
 	
@@ -24,9 +25,11 @@ public class AdventOfCode {
 
 		// int count = pass.countPass(pass.convertFileArray(passphrase));
 		
-		Day3_2018.countOverlap(day3_2018);
+		int count = Day3_2018.countOverlap(day3_2018);
+		String id = Day3_2018.findOverlap(day3_2018);
 
-		System.out.println("");
+		System.out.println(count);
+		System.out.println(id);
 
 	}	
 
