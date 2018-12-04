@@ -1,9 +1,6 @@
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AdventOfCode {
 	
@@ -13,24 +10,24 @@ public class AdventOfCode {
 	private static Path cycles = Paths.get("E:/Docs de Germain/Documents/AdventOfCode/cycles.txt");
 	private static Path day1_2018 = Paths.get("E:/Docs de Germain/Documents/AdventOfCode/day1_2018.txt");
 	private static Path day2_2018 = Paths.get("E:/Docs de Germain/Documents/AdventOfCode/day2_2018.txt");
+	private static Path day3_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/fabric.txt");
+
 
 	
 	
 	
-	public static void main(String[] args) throws IOException{
+	public static void main(final String[] args) throws IOException {
+
+		final Day3_2018 fabric = new Day3_2018();
+
+		// cap.findWord(cap.convertFileMatrix(path)).forEach(System.out::println);;
+
+		// int count = pass.countPass(pass.convertFileArray(passphrase));
 		
-		Days2018 checksum = new Days2018();
-		
-		//cap.findWord(cap.convertFileMatrix(path)).forEach(System.out::println);;
-		
-		
-		//int count = pass.countPass(pass.convertFileArray(passphrase));
-		List<Character> match = checksum.findDiff(checksum.convertFileArray(day2_2018));
-		String matchToString = checksum.getStringRepresentation(match);
-		
-		System.out.println(matchToString);
-		
-	}
-	
+		fabric.countOverlap(day3_2018);
+
+		System.out.println("");
+
+	}	
 
 }
