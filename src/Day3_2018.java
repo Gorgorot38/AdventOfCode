@@ -19,7 +19,7 @@ public class Day3_2018 {
 	}
 
 	
-	public int countOverlap(final Path fabricInfos) throws IOException {
+	public static int countOverlap(final Path fabricInfos) throws IOException {
 
 		final int count = 0;
 
@@ -34,7 +34,7 @@ public class Day3_2018 {
 		return count;
 	}
 	
-	public String[][] buildFormatedArray(final String[] input){
+	public static String[][] buildFormatedArray(final String[] input){
 		
 		for (int i = 0; i < input.length; i++) {
 			input[i] = formatString(input[i]);

@@ -18,13 +18,13 @@ public class AdventOfCode {
 	
 	public static void main(final String[] args) throws IOException {
 
-		final Day3_2018 fabric = new Day3_2018();
+		
 
 		// cap.findWord(cap.convertFileMatrix(path)).forEach(System.out::println);;
 
 		// int count = pass.countPass(pass.convertFileArray(passphrase));
 		
-		fabric.countOverlap(day3_2018);
+		Day3_2018.countOverlap(day3_2018);
 
 		System.out.println("");
 
