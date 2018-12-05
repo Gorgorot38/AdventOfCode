@@ -1,8 +1,5 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Arrays;
 
 public class Day3_2018 {
 
@@ -33,9 +30,9 @@ public class Day3_2018 {
 		final String[][] overlaping = buildFabricArray(fabricArea);
 		
 		
-		for (int i = 0; i < overlaping.length; i++){
-			for(int j = 0; j < overlaping[i].length; j++){
-				if(overlaping[i][j] == "X"){
+		for (final String[] element : overlaping) {
+			for(int j = 0; j < element.length; j++){
+				if(element[j] == "X"){
 					count++;
 				}
 			}
@@ -47,8 +44,6 @@ public class Day3_2018 {
 	public static String findOverlap(final Path fabricInfos) throws IOException{
 		
 		String id = "";
-		boolean test = true;
-
 		final String[] firstArray = Utils.convertFileArray(fabricInfos);
 
 		final String[][] fabricArea = buildFormatedArray(firstArray);
@@ -56,20 +51,19 @@ public class Day3_2018 {
 		final String[][] overlaping = buildFabricArray(fabricArea);
 		
 		
-		for (int i = 0; i < fabricArea.length; i++){
+		for (final String[] element : fabricArea) {
 			
-			final int abs = Integer.parseInt(fabricArea[i][2]);
-			final int ord = Integer.parseInt(fabricArea[i][1]);
-			final int wide = Integer.parseInt(fabricArea[i][3]);
-			final int tall = Integer.parseInt(fabricArea[i][4]);
-			final String currentId = fabricArea[i][0];
+			final int abs = Integer.parseInt(element[2]);
+			final int ord = Integer.parseInt(element[1]);
+			final int wide = Integer.parseInt(element[3]);
+			final int tall = Integer.parseInt(element[4]);
+			final String currentId = element[0];
 			boolean currentTest = false;
 
 			
 			for (int j = abs; j < abs + tall; j++){
 				for(int k = ord; k < ord + wide; k++){
 					if(overlaping[j][k] != currentId){
-						test = false;
 						currentTest = true;
 						break;
 					}
@@ -110,23 +104,23 @@ public class Day3_2018 {
 	public static String[][] buildFabricArray(final String[][] fabricArea) {
 		final String[][] overlaping = new String[1500][1500];
 
-		for (int i = 0; i < fabricArea.length; i++) {
+		for (final String[] element : fabricArea) {
 
-			final int abs = Integer.parseInt(fabricArea[i][2]);
-			final int ord = Integer.parseInt(fabricArea[i][1]);
+			final int abs = Integer.parseInt(element[2]);
+			final int ord = Integer.parseInt(element[1]);
 
 			if (overlaping[abs][ord] == null) {
-				overlaping[abs][ord] = fabricArea[i][0];
+				overlaping[abs][ord] = element[0];
 
 			} else {
 				overlaping[abs][ord] = "X";
 			}
 
-			for (int tall = 0; tall < Integer.parseInt(fabricArea[i][4]); tall++) {
-				for (int wide = 0; wide < Integer.parseInt(fabricArea[i][3]); wide++) {
+			for (int tall = 0; tall < Integer.parseInt(element[4]); tall++) {
+				for (int wide = 0; wide < Integer.parseInt(element[3]); wide++) {
 
-					if (overlaping[abs + tall][ord + wide] == null || overlaping[abs + tall][ord + wide] == fabricArea[i][0]) {
-						overlaping[abs + tall][ord + wide] = fabricArea[i][0];
+					if (overlaping[abs + tall][ord + wide] == null || overlaping[abs + tall][ord + wide] == element[0]) {
+						overlaping[abs + tall][ord + wide] = element[0];
 					} else {
 						overlaping[abs + tall][ord + wide] = "X";
 					}
