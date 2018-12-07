@@ -90,7 +90,6 @@ public class Day4_2018 {
 	}
 	
 	
-	@SuppressWarnings("deprecation")
 	public static LinkedHashMap<Date, String> getMinMap(final LinkedHashMap<Date, String> oneGuardMap) {
 
 		final LinkedHashMap<Date, String> minMap = new LinkedHashMap<>();
@@ -117,7 +116,8 @@ public class Day4_2018 {
 		for (int i = 0; i < 60; i++) {
 			allMinMap.put(i, 0);
 		}
-
+		
+		
 		for (final Entry<Date, String> e : minMap.entrySet()) {
 			if (e.getValue().equals("f")) {
 				fall = e.getKey().getMinutes();
@@ -140,6 +140,7 @@ public class Day4_2018 {
 			}
 		}
 
+	
 		return maxEntry;
 
 	}

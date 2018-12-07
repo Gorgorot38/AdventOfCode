@@ -36,7 +36,7 @@ public class AdventOfCode {
 
 		// final long minute = (date2.getTime() - date1.getTime()) / (60 * 1000);
 		
-		final int result = minute.getValue() * Integer.parseInt(idGuard.getKey());
+		final int result = minute.getKey() * Integer.parseInt(idGuard.getKey());
 
 		System.out.println(result);
 
