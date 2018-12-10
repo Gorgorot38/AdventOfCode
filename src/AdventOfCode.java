@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
+import java.util.HashMap;
 
 public class AdventOfCode {
 
@@ -15,12 +16,17 @@ public class AdventOfCode {
 	private static Path day3_test_2018 = Paths.get("C:/Users/Germain/workspace/Sandbox/files/fabricSmall.txt");
 	private static Path day4_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/guard.txt");
 	private static Path day5_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/chemical.txt");
+	private static Path day6_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/coordinates.txt");
+
 
 	public static void main(final String[] args) throws IOException, ParseException {
 		
-		final int chemSize = Day5_2018.findShortestPol();
+
+		final HashMap<String, String> lol = Day6_2018.getCoordinatesMap(day6_2018);
 		
-		System.out.println(chemSize);
+		lol.forEach((key, value) -> {
+			System.out.println(key + " " + value);
+		});
 
 	}
 
