@@ -22,8 +22,8 @@ public class AdventOfCode {
 
 		// int count = pass.countPass(pass.convertFileArray(passphrase));
 
-		final Entry<Integer, Integer> minute = Day4_2018.fillMinMap(Day4_2018
-		                .getMinMap(Day4_2018.getOneGuardMap(Day4_2018.formatArray(Utils.convertFileArray(day4_2018)))));
+	//	final Entry<Integer, Integer> minute = Day4_2018.fillMinMap(Day4_2018
+	//	                .getMinMap(Day4_2018.getOneGuardMap(Day4_2018.formatArray(Utils.convertFileArray(day4_2018)))));
 		
 		
 		final Entry<String, Long> idGuard = Day4_2018
@@ -36,10 +36,26 @@ public class AdventOfCode {
 
 		// final long minute = (date2.getTime() - date1.getTime()) / (60 * 1000);
 		
-		final int result = minute.getKey() * Integer.parseInt(idGuard.getKey());
+	//	final int result = minute.getKey() * Integer.parseInt(idGuard.getKey());
+		
+		final int result = Day4_2018.findGuardMinute(Day4_2018.constructGuardMap(Day4_2018.formatArray(Utils.convertFileArray(day4_2018))));
 
 		System.out.println(result);
 
+	}
+
+	/**
+	 * @return the day4_2018
+	 */
+	public static Path getDay4_2018() {
+		return day4_2018;
+	}
+
+	/**
+	 * @param day4_2018 the day4_2018 to set
+	 */
+	public static void setDay4_2018(final Path day4_2018) {
+		AdventOfCode.day4_2018 = day4_2018;
 	}
 
 }

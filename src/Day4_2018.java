@@ -69,26 +69,26 @@ public class Day4_2018 {
 
 	}
 	
-	public static LinkedHashMap<Date, String> getOneGuardMap(final LinkedHashMap<Date, String> allShifts){
-		
+	public static LinkedHashMap<Date, String> getOneGuardMap(final LinkedHashMap<Date, String> allShifts,
+	                final String guard) {
+
 		final LinkedHashMap<Date, String> oneGuardMap = new LinkedHashMap<>();
 		String id = "";
-		final Entry<String, Long> theOne = findMostSleepy(allShifts);
-		
+		final Entry<String, Long> theOne = findOneSleep(allShifts, guard);
+
 		for (final Map.Entry<Date, String> e : allShifts.entrySet()) {
 			if (!e.getValue().equals("f") && !e.getValue().equals("w")) {
 				id = e.getValue();
 			}
-			
+
 			if (id.equals(theOne.getKey())) {
 				oneGuardMap.put(e.getKey(), e.getValue());
 			}
 		}
-		
+
 		return oneGuardMap;
-		
-	}
-	
+
+	}	
 	
 	public static LinkedHashMap<Date, String> getMinMap(final LinkedHashMap<Date, String> oneGuardMap) {
 
@@ -144,6 +144,44 @@ public class Day4_2018 {
 		return maxEntry;
 
 	}
+	
+	public static int findGuardMinute(final HashMap<String, Entry<Integer, Integer>> guardMap) {
+		
+		final int lol = 0;
+		final HashMap<String, Entry<Integer, Integer>> guardMapMin = new HashMap<>();
+		
+		guardMap.forEach((guard, entry) -> {
+			try {
+				final Entry<Integer, Integer> minForGuard = fillMinMap(getMinMap(getOneGuardMap(
+				                formatArray(Utils.convertFileArray(AdventOfCode.getDay4_2018())), guard)));
+				guardMapMin.put(guard, minForGuard);
+			} catch (ParseException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+		
+		guardMapMin.forEach((guard, min) -> {
+			System.out.println(guard + " min : " + min);
+
+		});
+		
+		return lol;
+	}
+	
+	public static HashMap<String, Entry<Integer, Integer>> constructGuardMap(final LinkedHashMap<Date, String> schedule) {
+
+		final HashMap<String, Entry<Integer, Integer>> guardMap = new HashMap<>();
+
+		schedule.forEach((date, value) -> {
+			if (!value.equals("f") && !value.equals("w") && !guardMap.containsKey(value)) {
+				final Entry<Integer, Integer> entry = null;
+				guardMap.put(value, entry);
+			}
+		});
+
+		return guardMap;
+	}
 		
 	
 	public static Entry<String, Long> findMostSleepy(final LinkedHashMap<Date, String> schedule) {
@@ -183,5 +221,44 @@ public class Day4_2018 {
 		return maxEntry;
 
 	}
+	
+	public static Entry<String, Long> findOneSleep(final LinkedHashMap<Date, String> schedule, final String guard) {
+
+		String id = "";
+		final NavigableMap<Date, String> tempMap = new TreeMap<>();
+		final HashMap<String, Long> mapOfTime = new HashMap<>();
+
+		schedule.forEach((timestamp, value) -> {
+			tempMap.put(timestamp, value);
+		});
+
+		for (final Map.Entry<Date, String> e : tempMap.entrySet()) {
+			final Map.Entry<Date, String> next = tempMap.higherEntry(e.getKey()); // next
+			if (!e.getValue().equals("f") && !e.getValue().equals("w")) {
+				id = e.getValue();
+			}
+
+			if (!e.getValue().equals("f") && !e.getValue().equals("w") && !mapOfTime.containsKey(e.getValue())) {
+				mapOfTime.put(e.getValue(), (long) 0);
+			}
+
+			if (e.getValue().equals("f")) {
+				final long minute = (next.getKey().getTime() - e.getKey().getTime()) / (60 * 1000);
+				mapOfTime.put(id, minute + mapOfTime.get(id));
+			}
+		}
+
+		Map.Entry<String, Long> maxEntry = null;
+
+		for (final Map.Entry<String, Long> entry : mapOfTime.entrySet()) {
+			if (entry.getKey().equals(guard)) {
+				maxEntry = entry;
+			}
+		}
+
+		return maxEntry;
+
+	}
+
 	
 }
