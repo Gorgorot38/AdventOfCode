@@ -2,7 +2,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
-import java.util.Map.Entry;
 
 public class AdventOfCode {
 
@@ -14,33 +13,14 @@ public class AdventOfCode {
 	private static Path day2_2018 = Paths.get("E:/Docs de Germain/Documents/AdventOfCode/day2_2018.txt");
 	private static Path day3_2018 = Paths.get("C:/Users/Germain/workspace/Sandbox/files/fabric.txt");
 	private static Path day3_test_2018 = Paths.get("C:/Users/Germain/workspace/Sandbox/files/fabricSmall.txt");
-	private static Path day4_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/guards.txt");
+	private static Path day4_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/guard.txt");
+	private static Path day5_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/chemical.txt");
 
 	public static void main(final String[] args) throws IOException, ParseException {
-
-		// cap.findWord(cap.convertFileMatrix(path)).forEach(System.out::println);;
-
-		// int count = pass.countPass(pass.convertFileArray(passphrase));
-
-	//	final Entry<Integer, Integer> minute = Day4_2018.fillMinMap(Day4_2018
-	//	                .getMinMap(Day4_2018.getOneGuardMap(Day4_2018.formatArray(Utils.convertFileArray(day4_2018)))));
 		
+		final int chemSize = Day5_2018.findShortestPol();
 		
-		final Entry<String, Long> idGuard = Day4_2018
-		                .findMostSleepy(Day4_2018.formatArray(Utils.convertFileArray(day4_2018)));
-		
-		// final SimpleDateFormat stringDate = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
-		// final Date date1 = stringDate.parse("1518-11-01 00:00");
-		// final Date date2 = stringDate.parse("1518-11-01 00:25");
-
-		// final long minute = (date2.getTime() - date1.getTime()) / (60 * 1000);
-		
-	//	final int result = minute.getKey() * Integer.parseInt(idGuard.getKey());
-		
-		final int result = Day4_2018.findGuardMinute(Day4_2018.constructGuardMap(Day4_2018.formatArray(Utils.convertFileArray(day4_2018))));
-
-		System.out.println(result);
+		System.out.println(chemSize);
 
 	}
 
@@ -56,6 +36,20 @@ public class AdventOfCode {
 	 */
 	public static void setDay4_2018(final Path day4_2018) {
 		AdventOfCode.day4_2018 = day4_2018;
+	}
+
+	/**
+	 * @return the day5_2018
+	 */
+	public static Path getDay5_2018() {
+		return day5_2018;
+	}
+
+	/**
+	 * @param day4_2018 the day4_2018 to set
+	 */
+	public static void setDay5_2018(final Path day5_2018) {
+		AdventOfCode.day5_2018 = day5_2018;
 	}
 
 }
