@@ -16,12 +16,13 @@ public class AdventOfCode {
 	private static Path day4_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/guard.txt");
 	private static Path day5_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/chemical.txt");
 	private static Path day6_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/coordinates.txt");
+	private static Path day7_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/steps.txt");
 
 
 	public static void main(final String[] args) throws IOException, ParseException {
 		
 
-		final int lol = Day6_2018.countSafe(day6_2018);
+		final String[][] lol = Day7_2018.formatSteps(day7_2018);
 		
 		System.out.println(lol);
 
