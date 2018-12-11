@@ -2,8 +2,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
-import java.util.HashMap;
-import java.util.Map.Entry;
 
 public class AdventOfCode {
 
@@ -23,27 +21,9 @@ public class AdventOfCode {
 	public static void main(final String[] args) throws IOException, ParseException {
 		
 
-		final HashMap<String, Integer[]> lol = Day6_2018.getCoordinatesMap(day6_2018);
+		final int lol = Day6_2018.countSafe(day6_2018);
 		
-		lol.forEach((key, value) -> {
-			System.out.println(key + " " + value[0] + " " + value[1]);
-		});
-		
-		int maxX = 0;
-		int maxY = 0;
-		
-		for (final Entry<String, Integer[]> e : lol.entrySet()) {
-			if (e.getValue()[0] >= maxX) {
-				maxX = e.getValue()[0];
-			}
-			if (e.getValue()[1] >= maxY) {
-				maxY = e.getValue()[1];
-			}
-
-		}
-
-		System.out.println(maxX);
-		System.out.println(maxY);
+		System.out.println(lol);
 
 	}
 
