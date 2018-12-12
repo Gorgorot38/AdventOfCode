@@ -17,12 +17,14 @@ public class AdventOfCode {
 	private static Path day5_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/chemical.txt");
 	private static Path day6_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/coordinates.txt");
 	private static Path day7_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/steps.txt");
+	private static Path day7bis_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/steps - Copy.txt");
 
 
 	public static void main(final String[] args) throws IOException, ParseException {
 		
 
-		final String[][] lol = Day7_2018.formatSteps(day7_2018);
+		final int lol = Day7_2018.findTime(day7_2018);
+		final char test = 'A';
 		
 		System.out.println(lol);
 
