@@ -10,16 +10,20 @@ public class AdventOfCode {
 	private static Path day8_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/nodes.txt");
 	private static Path day9_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/marbles.txt");
 	private static Path day10_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/message.txt");
+	private static Path day12_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/pots.txt");
+	private static Path day13_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/carts.txt");
+	private static Path day13_2018_test = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/cartsTest.txt");
+	
 
 
 
 	public static void main(final String[] args) throws IOException, ParseException {
 
-		final Day10_2018 fromage = new Day10_2018();
+		final Day13_2018 fromage = new Day13_2018();
 		
-		fromage.move(fromage.fileToArray(day10_2018));
+		final String lol = fromage.findCrash(day13_2018);
 		
-		System.out.println("");
+		System.out.println(lol);
 
 	}
 
