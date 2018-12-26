@@ -28,7 +28,6 @@ public class Day9_2018 {
 				}
 			}
 		}
-		
 	}
 	
 	public void initializeParam() throws IOException {

@@ -19,11 +19,12 @@ public class AdventOfCode {
 
 	public static void main(final String[] args) throws IOException, ParseException {
 
-		final Day13_2018 fromage = new Day13_2018();
+		final Day14_2018 fromage = new Day14_2018();
+				
+		fromage.testCircle();
 		
-		final String lol = fromage.findCrash(day13_2018);
 		
-		System.out.println(lol);
+		
 
 	}
 
