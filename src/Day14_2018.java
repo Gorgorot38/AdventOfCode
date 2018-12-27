@@ -1,73 +1,102 @@
-import java.util.ArrayDeque;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Day14_2018 {
 
 
 	final int input = 509671;
 	
-	class Circle<E> extends ArrayDeque<E>{
+	public void part1() {
 		
-		void rotate(final long n) {
-			if (n == 0) {
-				return;
-			}
-			if (n > 0) {
-				for (long i = 0; i < n; i++) {
-					final E e = this.removeLast();
-					this.addFirst(e);
-				}
+		final ArrayList<String> recipes = new ArrayList<>();
+		
+		recipes.add("3");
+		recipes.add("7");
+		int sumOfRecipes = 0;
+		String result = "";
 
+		int elf1 = 0;
+		int elf2 = 1;
+
+		while (recipes.size() < this.input + 10) {
+			sumOfRecipes = Integer.parseInt(recipes.get(elf1)) + Integer.parseInt(recipes.get(elf2));
+
+			if (sumOfRecipes < 10) {
+				recipes.add(Integer.toString(sumOfRecipes));
+			} else {
+				final String tmpString = Integer.toString(sumOfRecipes);
+				final String digit1 = tmpString.substring(0, 1);
+				final String digit2 = tmpString.substring(1);
+
+				recipes.add(digit1);
+				recipes.add(digit2);
 			}
-			if (n < 0) {
-				for (long i = 0; i < Math.abs(n); i++) {
-					final E e = this.removeFirst();
-					this.addLast(e);
-				}
-			}
+
+			elf1 = (elf1 + Integer.parseInt(recipes.get(elf1)) + 1) % recipes.size();
+			elf2 = (elf2 + Integer.parseInt(recipes.get(elf2)) + 1) % recipes.size();
 		}
-	}
-
-	
-	
-	public void testCircle() {
+		for (int i = this.input; i < this.input + 10; i++) {
+			result = result + recipes.get(i);
+		}
 		
-		final Circle<String> circle = new Circle<>();
-		circle.add("(3)*");
-		circle.add("[7]");
-		
-		final HashMap<String, Integer> currentRecipes = new HashMap<>();
-
-		//Find current recipes
-		circle.forEach(recipe -> {
-			if (recipe.startsWith("(")) {
-				String tmpString = recipe.replace("(", "");
-				tmpString = tmpString.replace(")", "");
-				if(recipe.endsWith("*")) {
-					tmpString.replace("*", "");
-				}
-				final int toInt = Integer.parseInt(tmpString);
-				currentRecipes.put("(", toInt);
-			}
-			if (recipe.startsWith("[")) {
-				String tmpString = recipe.replace("[", "");
-				tmpString = tmpString.replace("]", "");
-				if(recipe.endsWith("*")) {
-					tmpString.replace("*", "");
-				}
-				final int toInt = Integer.parseInt(tmpString);
-				currentRecipes.put("[", toInt);
-			}
-		});
-		
-		circle.rotate(3);
-		
-		
-		circle.forEach(element -> System.out.println(element));
-
-		
+		System.out.println(result);
 	}
 	
-	
+	public void part2() {
+		
+		final ArrayList<String> recipes = new ArrayList<>();
+		
+		recipes.add("3");
+		recipes.add("7");
+		int sumOfRecipes = 0;
+		String result = "";
+		final String inputAsString = String.valueOf(this.input);
+
+		int elf1 = 0;
+		int elf2 = 1;
+
+		while (!result.equalsIgnoreCase(inputAsString)) {
+			sumOfRecipes = Integer.parseInt(recipes.get(elf1)) + Integer.parseInt(recipes.get(elf2));
+
+			if (sumOfRecipes < 10) {
+				recipes.add(Integer.toString(sumOfRecipes));
+				if (recipes.size() > 20000000 && !result.equalsIgnoreCase(inputAsString)) {
+					result = "";
+					for (int i = recipes.size() - 6; i < recipes.size(); i++) {
+						result = result + recipes.get(i);
+					}
+				}
+			} else {
+				final String tmpString = Integer.toString(sumOfRecipes);
+				final String digit1 = tmpString.substring(0, 1);
+				final String digit2 = tmpString.substring(1);
+
+				recipes.add(digit1);
+				if (recipes.size() > 20000000 && !result.equalsIgnoreCase(inputAsString)) {
+					result = "";
+					for (int i = recipes.size() - 6; i < recipes.size(); i++) {
+						result = result + recipes.get(i);
+					}
+				}
+				recipes.add(digit2);
+				if (recipes.size() > 20000000 && !result.equalsIgnoreCase(inputAsString)) {
+					result = "";
+					for (int i = recipes.size() - 6; i < recipes.size(); i++) {
+						result = result + recipes.get(i);
+					}
+				}
+				if (result.equalsIgnoreCase(inputAsString)) {
+					recipes.remove(recipes.size()-1);
+				}
+			}
+
+			elf1 = (elf1 + Integer.parseInt(recipes.get(elf1)) + 1) % recipes.size();
+			elf2 = (elf2 + Integer.parseInt(recipes.get(elf2)) + 1) % recipes.size();
+			
+		}
+		
+		
+		System.out.println(result);
+		System.out.println(recipes.size() - 6);
+	}
 	
 }

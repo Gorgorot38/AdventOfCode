@@ -20,11 +20,8 @@ public class AdventOfCode {
 	public static void main(final String[] args) throws IOException, ParseException {
 
 		final Day14_2018 fromage = new Day14_2018();
-				
-		fromage.testCircle();
 		
-		
-		
+		fromage.part2();		
 
 	}
 
