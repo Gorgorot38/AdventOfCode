@@ -4,30 +4,28 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
 
-import aoc.aoc2018.Day16;
+import aoc.aoc2018.Day17;
 
 public class AdventOfCode {
 
-	private static Path day4_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/guard.txt");
-	private static Path day5_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/chemical.txt");
-	private static Path day8_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/nodes.txt");
-	private static Path day9_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/marbles.txt");
-	private static Path day10_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/message.txt");
-	private static Path day12_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/pots.txt");
-	private static Path day13_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/carts.txt");
-	private static Path day13_2018_test = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/cartsTest.txt");
-	private static Path day15_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/field.txt");
-	private static Path day16_part1_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/day16_part1.txt");
+	private static Path day4_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/waterfall.txt");
+	private static Path day5_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/waterfall.txt");
+	private static Path day8_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/waterfall.txt");
+	private static Path day9_2018 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/waterfall.txt");
+
+	private static Path day17 = Paths.get("C:/dev/workspace/AdventOfCode/AdventOfCode/files/waterfall.txt");
+
+
 
 
 
 
 	public static void main(final String[] args) throws IOException, ParseException {
 
-		final Day16 fromage = new Day16();
+		final Day17 fromage = new Day17();
 		
 		
-		Day16.findMap(Day16.part1(day16_part1_2018));
+		fromage.part1(day17, 1, 100);
 		
 //		final List<Integer> lol = new ArrayList<>();
 //		final List<Integer> lol2 = new ArrayList<>();

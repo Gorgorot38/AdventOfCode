@@ -1,6 +1,8 @@
 package aoc.aoc2018;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,10 +13,11 @@ import aoc.Utils;
 
 public class Day16 {
 
+	List<Integer> buffer = new ArrayList<>();
 	
 	public static List<List<String>> part1(final Path path) throws IOException {
 		
-		final List<List<List<Integer>>> samples = buildList(path);
+		final List<List<List<Integer>>> samples = buildListPart1(path);
 		final List<List<String>> whatMethodList = new ArrayList<>();
 		
 		samples.forEach(triple -> {
@@ -104,9 +107,6 @@ public class Day16 {
 			whatMethodList.add(methodName);
 		});
 		
-		whatMethodList.forEach(lists -> {
-			lists.forEach(word -> System.out.println(word));
-		});
 		
 		return whatMethodList;
 	}
@@ -173,17 +173,71 @@ public class Day16 {
 		return reverseMap;
 	}
 	
-	public static void part2(final Path path) throws IOException {
+	@SuppressWarnings("unchecked")
+	public void part2(final Path path1, final Path path2) throws IOException {
 		
-		final List<List<String>> allPossibles = part1(path);
+		final List<List<String>> allPossibles = part1(path1);
 		final HashMap<Integer, String> finalMap = findMap(allPossibles);
+		final List<List<Integer>> listOfOpe = buildListPart2(path2);
 		
+		for (int i = 0; i < 4; i++) {
+			this.buffer.add(0);
+		}
 		
+		listOfOpe.forEach(ope -> {
+			
+			List<Integer> tmpResult = new ArrayList<>();
+			try {
+				final Method current = Day16.class.getMethod(finalMap.get(ope.get(0)), List.class, List.class);
+				tmpResult = (List<Integer>) current.invoke(null, this.buffer, ope);
+				
+				this.buffer.clear();
+				tmpResult.forEach(value -> this.buffer.add(value));
+				
+			} catch (final NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (final SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (final IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (final IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (final InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+						
+		});
 		
+		System.out.println(this.buffer);
+	}
+	
+	public static List<List<Integer>> buildListPart2(final Path path) throws IOException{
+		
+		final List<List<Integer>> finalList = new ArrayList<>();
+		final String[] fileToArray = Utils.convertFileArray(path);
+
+		for (final String element2 : fileToArray) {
+			final List<Integer> tmpList = new ArrayList<>();
+
+			final String[] tmpArray = element2.split(" ");
+			for (final String element : tmpArray) {
+				tmpList.add(Integer.parseInt(element));
+			}
+			
+			finalList.add(tmpList);
+		}
+
+		
+		return finalList;
 		
 	}
 	
-	public static List<List<List<Integer>>> buildList(final Path path) throws IOException{
+	public static List<List<List<Integer>>> buildListPart1(final Path path) throws IOException{
 		
 		final List<List<List<Integer>>> finalList = new ArrayList<>();
 		final String[] fileToArray = Utils.convertFileArray(path);
