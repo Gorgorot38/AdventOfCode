@@ -70,6 +70,7 @@ public class Day17 {
 	
 	public void part1(final Path path, final int startY, final int startX) throws IOException {
 		
+		int tiles = 0;
 		buildSandArray(path);
 		falling(startY, startX);
 
@@ -89,11 +90,21 @@ public class Day17 {
 		writer.write(builder.toString());// save the string representation of the board
 		writer.close();
 
+		for (final String[] element : this.waterFall) {
+			for (final String element2 : element) {
+				
+				if (element2 == "~") {
+					tiles++;
+				}
+			}
+		}
+		System.out.println(tiles);
+		
 	}
 	
 	private void falling(final int startY, final int startX) throws IOException {
 
-		int over = 0;
+		final int over = 0;
 		final boolean notOver = true;
 		final int x = startX;
 		final int y = startY;
@@ -121,7 +132,7 @@ public class Day17 {
 				this.waterFall[y][i] = "|";
 				falling(y, i);
 				i = x;
-				while(this.waterFall[y+1][i] != ".") {
+				while(this.waterFall[y+1][i] == "#") {
 					this.waterFall[y][i] = "|";
 					i++;
 				}
@@ -151,6 +162,10 @@ public class Day17 {
 					this.waterFall[y][i] = "|";
 					i++;
 				}
+				if (this.waterFall[y+1][i-2] == "#") {
+					this.waterFall[y][i] = "|";
+					falling(y, i);
+				}
 				if (this.waterFall[y][x] != "~") {
 					falling(y, i-1);
 				}
@@ -162,6 +177,10 @@ public class Day17 {
 				while(this.waterFall[y+1][i] != ".") {
 					this.waterFall[y][i] = "|";
 					i--;
+				}
+				if (this.waterFall[y+1][i+2] == "#") {
+					this.waterFall[y][i] = "|";
+					falling(y, i);
 				}
 				if (this.waterFall[y][x] != "~") {
 					falling(y, i+1);
@@ -187,24 +206,24 @@ public class Day17 {
 			}
 		}
 
-		final StringBuilder builder = new StringBuilder();
-		for (final String[] element : this.waterFall) {
-			for (int k = 0; k < element.length; k++)// for each column
-			{
-				builder.append(element[k] + "");// append to the output string
-				if (k < this.waterFall.length - 1) {
-					builder.append(" ");// then add comma (if you don't like commas you can use spaces)
-				}
-			}
-			builder.append("\n");// append new line at the end of the row
-		}
-		final BufferedWriter writer = new BufferedWriter(
-		                new FileWriter("C:/dev/workspace/AdventOfCode/AdventOfCode/files/testMessage/fromage.txt"));
-		writer.write(builder.toString());// save the string representation of the board
-		writer.close();
-
-		over++;
-		System.out.println(over);
+//		final StringBuilder builder = new StringBuilder();
+//		for (final String[] element : this.waterFall) {
+//			for (int k = 0; k < element.length; k++)// for each column
+//			{
+//				builder.append(element[k] + "");// append to the output string
+//				if (k < this.waterFall.length - 1) {
+//					builder.append(" ");// then add comma (if you don't like commas you can use spaces)
+//				}
+//			}
+//			builder.append("\n");// append new line at the end of the row
+//		}
+//		final BufferedWriter writer = new BufferedWriter(
+//		                new FileWriter("C:/dev/workspace/AdventOfCode/AdventOfCode/files/testMessage/fromage.txt"));
+//		writer.write(builder.toString());// save the string representation of the board
+//		writer.close();
+//
+//		over++;
+//		System.out.println(over);
 		
 		
 	}
